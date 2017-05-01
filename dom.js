@@ -40,12 +40,22 @@ var dom = (function () {
 		},
 
 		repeat: function (tag, count, attributes) {
-			var generator;
+			var tagGenerator;
+
+			if (typeof tag === 'function') {
+				tagGenerator = tag;
+			} else {
+				tagGenerator = function (attributes) {
+					return this.create(tag, attributes);
+				};
+			}
+
+			var attributeGenerator;
 
 			if (typeof attributes === 'function') {
-				generator = attributes;
+				attributeGenerator = attributes;
 			} else {
-				generator = function () {
+				attributeGenerator = function () {
 					return attributes;
 				};
 			}
@@ -53,7 +63,7 @@ var dom = (function () {
 			var elements = [];
 
 			for (var i = 0; i < count; i++) {
-				elements.push(this.create(tag, generator(i)));
+				elements.push(tagGenerator(attributeGenerator(i)));
 			}
 
 			return elements;

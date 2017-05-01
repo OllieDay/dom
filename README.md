@@ -67,7 +67,7 @@ var ul = dom.ul({
 // </ul>
 
 var ul = dom.ul({
-    children: dom.repeat('li', 3, function (index) {
+    children: dom.repeat(dom.li, 3, function (index) {
         return {
             innerHTML: 'Item #' + (index + 1)
         };
