@@ -58,6 +58,23 @@ var ul = dom.ul({
 });
 ```
 
+## Appending child elements with callback function
+```js
+// <ul>
+//    <li>Item #1</li>
+//    <li>Item #2</li>
+//    <li>Item #3</li>
+// </ul>
+
+var ul = dom.ul({
+    children: dom.repeat('li', 3, function (index) {
+        return {
+            innerHTML: 'Item #' + (index + 1)
+        };
+    })
+});
+```
+
 ## Creating custom elements
 ```js
 // <my-custom-element></my-custom-element>
