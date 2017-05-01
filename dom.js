@@ -12,8 +12,10 @@ var dom = (function () {
 							var fragment = document.createDocumentFragment();
 
 							if (Array.isArray(attributes.children)) {
-								for (var i = 0; i < attributes.children.length; i++) {
-									fragment.appendChild(attributes.children[i]);
+								var children = [].concat.apply([], attributes.children);
+
+								for (var i = 0; i < children.length; i++) {
+									fragment.appendChild(children[i]);
 								}
 							} else {
 								fragment.appendChild(attributes.children);
