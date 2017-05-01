@@ -75,6 +75,34 @@ var ul = dom.ul({
 });
 ```
 
+## Appending child elements with and without callback function
+```js
+// <div>
+//     <button>Button #1</button>
+//     <button>Button #2</button>
+//     <a href="...">Link #1</a>
+//     <a href="...">Link #2</a>
+// </div>
+
+var div = dom.div({
+    children: [
+        dom.repeat(dom.button, 2, function (index) {
+            return {
+                innerHTML: 'Button #' + (index + 1)
+            };
+        }),
+        dom.a({
+            href: '...',
+            innerHTML: 'Link #1'
+        }),
+        dom.a({
+            href: '...',
+            innerHTML: 'Link #2'
+        }),
+    ]
+});
+```
+
 ## Creating custom elements
 ```js
 // <my-custom-element></my-custom-element>
