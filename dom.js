@@ -24,7 +24,7 @@ var dom = (function () {
 									element.style[style] = attributes.style[style];
 								}
 							}
-							
+
 							break;
 						default:
 							element[attribute] = attributes[attribute];
@@ -34,6 +34,27 @@ var dom = (function () {
 
 			return element;
 		},
+
+		repeat: function (tag, count, attributes) {
+			var generator;
+
+			if (typeof attributes === 'function') {
+				generator = attributes;
+			} else {
+				generator = function () {
+					return attributes;
+				};
+			}
+
+			var elements = [];
+
+			for (var i = 0; i < count; i++) {
+				elements.push(this.create(tag, generator(i)));
+			}
+
+			return elements;
+		},
+
 		a: function (attributes) { return this.create('a', attributes); },
 		abbr: function (attributes) { return this.create('abbr', attributes); },
 		acronym: function (attributes) { return this.create('acronym', attributes); },
