@@ -11,8 +11,12 @@ var dom = (function () {
 						case 'children':
 							var fragment = document.createDocumentFragment();
 
-							for (var i = 0; i < attributes.children.length; i++) {
-								fragment.appendChild(attributes.children[i]);
+							if (Array.isArray(attributes.children)) {
+								for (var i = 0; i < attributes.children.length; i++) {
+									fragment.appendChild(attributes.children[i]);
+								}
+							} else {
+								fragment.appendChild(attributes.children);
 							}
 
 							element.appendChild(fragment);
