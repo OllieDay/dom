@@ -9,9 +9,14 @@ var dom = (function () {
 				if (attributes.hasOwnProperty(attribute)) {
 					switch (attribute) {
 						case 'children':
+							var fragment = document.createDocumentFragment();
+
 							for (var i = 0; i < attributes.children.length; i++) {
-								element.appendChild(attributes.children[i]);
+								fragment.appendChild(attributes.children[i]);
 							}
+
+							element.appendChild(fragment);
+
 							break;
 						case 'style':
 							for (var style in attributes.style) {
@@ -19,6 +24,7 @@ var dom = (function () {
 									element.style[style] = attributes.style[style];
 								}
 							}
+							
 							break;
 						default:
 							element[attribute] = attributes[attribute];
